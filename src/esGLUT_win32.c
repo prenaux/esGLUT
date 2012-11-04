@@ -2,6 +2,8 @@
 
 #ifdef ESGLUT_OS_WIN32
 
+#include <malloc.h>
+
 #include "esGLUT_internal.h"
 
 #define REPEATED_KEYMASK	(1<<30)
@@ -243,6 +245,22 @@ GLboolean _glutOSWinCreate(const char* title)
     RECT     windowRect;
     HINSTANCE hInstance = GetModuleHandle(NULL);
 
+	TCHAR* windowTitle = NULL;
+	TCHAR* titleBuffer = NULL;
+	int bufferLength = 0;
+#ifdef UNICODE
+	bufferLength = MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, title, -1, NULL, 0);
+	if(bufferLength > 0) {
+		titleBuffer = (WCHAR*)malloc(sizeof(WCHAR) * bufferLength);
+		bufferLength = MultiByteToWideChar(CP_ACP, 0, title, -1, titleBuffer, bufferLength);
+		if(bufferLength > 0) {
+			windowTitle = titleBuffer;
+		}
+	}
+#else
+	windowTitle = title;
+#endif
+
     _InitOSWinResources();
 
     wndclass.style         = CS_OWNDC;
@@ -266,7 +284,7 @@ GLboolean _glutOSWinCreate(const char* title)
 
     _glutHWND = CreateWindow(
         TEXT("esGLUT"),
-        title,
+        windowTitle,
         wStyle,
         0,
         0,
@@ -276,6 +294,11 @@ GLboolean _glutOSWinCreate(const char* title)
         NULL,
         hInstance,
         NULL);
+
+	if(titleBuffer) {
+		free(titleBuffer);
+	}
+
     if (_glutHWND == NULL)
         return GL_FALSE;
 
