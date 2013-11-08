@@ -16,6 +16,7 @@ ESGLUT_EXTERN void (* _callback_glutSpecialUpFunc)( int, int, int );
 ESGLUT_EXTERN void (* _callback_glutReshapeFunc)( int, int );
 ESGLUT_EXTERN void (* _callback_glutDisplayFunc)( void );
 ESGLUT_EXTERN void (* _callback_glutMouseFunc)( int, int, int, int );
+ESGLUT_EXTERN void (* _callback_glutMouseWheelFunc)( int, int, int );
 ESGLUT_EXTERN void (* _callback_glutMotionFunc)( int, int );
 ESGLUT_EXTERN void (* _callback_glutPassiveMotionFunc)( int, int );
 ESGLUT_EXTERN void (* _callback_glutIdleFunc)( void );

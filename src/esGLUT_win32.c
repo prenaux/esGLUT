@@ -3,6 +3,7 @@
 #ifdef ESGLUT_OS_WIN32
 
 #include <malloc.h>
+#include <windowsx.h>
 
 #include "esGLUT_internal.h"
 
@@ -226,6 +227,20 @@ static LRESULT WINAPI _glutWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
         _mouseButton &= (1<<GLUT_RIGHT_BUTTON);
         if (_callback_glutMouseFunc) {
             _callback_glutMouseFunc(GLUT_RIGHT_BUTTON,GLUT_UP,x,y);
+        }
+        break;
+    }
+    case WM_MOUSEWHEEL: {
+        int delta;
+        POINT pt;
+        pt.x = GET_X_LPARAM(lParam);
+        pt.y = GET_Y_LPARAM(lParam);
+        // It appears WM_MOUSEWHEEL only passes mouse coordinates in screen space instead of in
+        // window space. This converts back to screen space to match all other mouse functions.
+        ScreenToClient(hWnd, &pt);
+        delta = GET_WHEEL_DELTA_WPARAM(wParam);
+        if (_callback_glutMouseWheelFunc) {
+            _callback_glutMouseWheelFunc(delta,pt.x,pt.y);
         }
         break;
     }

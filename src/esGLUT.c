@@ -49,6 +49,11 @@ void glutMouseFunc(void (*callback)( int, int, int, int )) {
     _callback_glutMouseFunc = callback;
 }
 
+void (* _callback_glutMouseWheelFunc)( int, int, int ) = NULL;
+void glutMouseWheelFunc(void (*callback)( int, int, int )) {
+    _callback_glutMouseWheelFunc = callback;
+}
+
 void (* _callback_glutMotionFunc)( int, int ) = NULL;
 void glutMotionFunc(void (*callback)( int, int )) {
     _callback_glutMotionFunc = callback;

@@ -105,6 +105,7 @@ ESGLUT_EXTERN void ESGLUT_API glutSpecialUpFunc( void (ESGLUT_CALLBACK *callback
 ESGLUT_EXTERN void ESGLUT_API glutReshapeFunc( void (ESGLUT_CALLBACK *callback)( int, int ) );
 ESGLUT_EXTERN void ESGLUT_API glutDisplayFunc( void (ESGLUT_CALLBACK *callback)( void ) );
 ESGLUT_EXTERN void ESGLUT_API glutMouseFunc( void (ESGLUT_CALLBACK *callback)( int, int, int, int ) );
+ESGLUT_EXTERN void ESGLUT_API glutMouseWheelFunc( void (ESGLUT_CALLBACK *callback)( int, int, int ) );
 ESGLUT_EXTERN void ESGLUT_API glutMotionFunc( void (ESGLUT_CALLBACK *callback)( int, int ) );
 ESGLUT_EXTERN void ESGLUT_API glutPassiveMotionFunc( void (ESGLUT_CALLBACK *callback)( int, int ) );
 
