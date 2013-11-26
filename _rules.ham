@@ -2,6 +2,6 @@ TK_NAME = "esGLUT" ;
 TK_DIR = [ FDirName $(WORK) esGLUT ] ;
 TOP_DIR = [ FDirName $(TK_DIR) ] ;
 NI_DIR = [ FDirName $(WORK) Ni ] ;
-BUILD_JNI ?= 0 ;
+BUILD_JNI ?= ;
 include $(NI_DIR)/sources/_rules_base.ham ;
 include $(TK_DIR)/_rules_esGLUT.ham ;
