@@ -1,7 +1,7 @@
-if [ aglSubDirOnce TOP src ] = 1 { return ; }
+if [ SubDirOnce TOP src ] = 1 { return ; }
 
-aglDefLib esGLUT : 1,0,0 ;
+tkDefLib esGLUT : 1,0,0 ;
 
-SRC = [ aglPkgSrc ] ;
+SRC = [ tkPkgSrc ] ;
 
-BUILD_SRC = [ aglBuildPackage $(SRC) : lint : $(CHK_SOURCES) ] ;
+BUILD_SRC = [ tkBuildPackage $(SRC) : lint : $(CHK_SOURCES) ] ;

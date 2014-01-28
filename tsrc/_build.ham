@@ -1,11 +1,11 @@
-if [ aglSubDirOnce TOP tsrc ] = 1 { return ; }
+if [ SubDirOnce TOP tsrc ] = 1 { return ; }
 
 rule ESTest {
-  local TESTNAME = $(<:B) ;
-  aglDefTest $(TESTNAME) : 1,0,0 ;
-  BUILD_SRC = [ aglBuildPackage $(<) : : $(CHK_SOURCES) ] ;
-  aglLinkLibs $(PKGTARGET) : esGLUT ;
-  aglRunTest Run_$(TESTNAME) : $(TESTNAME) ;
+  local TESTNAME = Test_$(<:B) ;
+  tkDefTest $(TESTNAME) : 1,0,0 ;
+  BUILD_SRC = [ tkBuildPackage $(<) : : $(CHK_SOURCES) ] ;
+  tkLinkLibs $(PKGTARGET) : esGLUT ;
+  runInDir $(TESTNAME) ;
   DEPENDS tests : $(PKGTARGET) ;
 }
 

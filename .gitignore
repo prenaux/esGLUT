@@ -1,5 +1,9 @@
 syntax: glob
 .externalToolBuilders/*
 .DS_Store
+/bin/nt-x86/Test_*.exe
+/bin/nt-x86/Test_*.pdb
+/bin/nt-x86/debug.txt
+/bin/web-js/Test_*.html
+/bin/web-js/Test_*.js
 /libs/
-/redist/bin/

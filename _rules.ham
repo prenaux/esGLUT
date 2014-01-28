@@ -1,7 +1,16 @@
 TK_NAME = "esGLUT" ;
-TK_DIR = [ FDirName $(WORK) esGLUT ] ;
+TK_DIR = [ FGetAbsolutePath [ FDirName $(TOP) ] ] ;
 TOP_DIR = [ FDirName $(TK_DIR) ] ;
-NI_DIR = [ FDirName $(WORK) Ni ] ;
-BUILD_JNI ?= ;
-include $(NI_DIR)/sources/_rules_base.ham ;
-include $(TK_DIR)/_rules_esGLUT.ham ;
+
+Import toolkit.ham ;
+
+switch $(LOA_LINKER)-$(LOA_ARCH) {
+  case msvc-x86 :
+    ESGLUT_DIR_GLES2 = $(TK_DIR)/thirdparty/angle/libs/nt-x86/ ;
+    LINKLIBS += $(ESGLUT_DIR_GLES2)/libEGL.lib $(ESGLUT_DIR_GLES2)/libGLESv2.lib ;
+  case em-js :
+    ESGLUT_DIR_GLES2 = $(TK_DIR)/thirdparty/angle/libs/nt-x86/ ;
+    SYSTEM_LINKLIBS += $(ESGLUT_DIR_GLES2)/libEGL.a $(ESGLUT_DIR_GLES2)/libGLESv2.a -lgdi32 ;
+  case * :
+    EXIT "E/ESGLUT Build platform not supported:" $(LOA_LINKER)-$(LOA_ARCH) ;
+}
