@@ -11,6 +11,4 @@ serve as a convenient base to build portable OpenGL-ES2/WebGL applications.
 Binaries of OpenGL ES 2 for Windows are provided as pre-built binaries of the
 Angleproject (http://code.google.com/p/angleproject/).
 
-Precompiled samples can be found at: http://talansoft.com/muse/webgl/index.html
-
 esGLUT is MIT licensed, see LICENSE.txt.
